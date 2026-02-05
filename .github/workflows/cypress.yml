@@ -78,17 +78,11 @@ jobs:
 
        working-directory: web
 
-     - name: Install Cypress Dependencies
-
-       run: npm install
-
      - name: Run Cypress Tests
 
        uses: cypress-io/github-action@v6
 
        with:
-
-         install: false
 
          spec: |
 
