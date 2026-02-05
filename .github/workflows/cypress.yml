@@ -1,4 +1,5 @@
 
+
 name: Cypress Tests
 
 on:
@@ -83,6 +84,8 @@ jobs:
 
        with:
 
+         install-command: npm install
+
          spec: |
 
            cypress/e2e/cadastro-sucesso.cy.js
@@ -101,4 +104,4 @@ jobs:
 
          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
-         GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
