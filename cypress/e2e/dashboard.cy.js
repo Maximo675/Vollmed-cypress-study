@@ -52,7 +52,9 @@ describe('Usuário logado na página de dashboard', () => {
                 )
 
                 // Toggle the switch and validate plan checkboxes inside the modal
-                cy.get('.MuiModal-root').first().within(() => {
+                cy.get('.MuiModal-root').first().then(($modal) => {
+                    cy.writeFile('cypress/results/modal-dom.html', $modal[0].outerHTML)
+                }).within(() => {
                     cy.get('input[aria-label="Atende por plano?"]').check({ force: true })
                     cy.get('input[value="Sulamerica"]').should('exist')
                     cy.get('input[value="Unimed"]').should('exist')
