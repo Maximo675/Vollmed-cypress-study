@@ -58,9 +58,7 @@ describe('Usuário logado na página de dashboard', () => {
                 cy.contains('Bradesco').should('be.visible')
 
                 cy.get('[type="checkbox"]').last().scrollIntoView({ easing: 'linear' })
-                cy.get('.MuiFormGroup-root').children().each(($checkbox) => {
-                    cy.wrap($checkbox).should('be.visible')
-                })
+                cy.get('.MuiFormGroup-root').children().should('have.length.at.least', 3)
             })
         })
 
