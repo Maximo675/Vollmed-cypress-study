@@ -31,7 +31,7 @@ describe('Testes em API', () => {
         })
 
         it('POST em especialistas', () => {
-            cy.get('@especialistas').then((dados) => {
+            cy.fixture('especialistas').then((dados) => {
                 const especialista = dados.especialistas[0];
                 cy.request({
                     method: 'POST',
