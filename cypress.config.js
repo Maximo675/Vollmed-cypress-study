@@ -17,6 +17,7 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     baseUrl: 'http://localhost:3000/',
+    supportFile: 'cypress/support/e2e.js',
     video: false,
     reporter: 'mochawesome',
     reporterOptions: {
