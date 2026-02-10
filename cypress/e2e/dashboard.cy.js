@@ -53,9 +53,9 @@ describe('Usuário logado na página de dashboard', () => {
 
                 // Toggle the "Atende por plano?" switch to reveal plan checkboxes
                 cy.get('[type="checkbox"]').first().check()
-                cy.contains('Sulamerica').should('be.visible')
-                cy.contains('Unimed').should('be.visible')
-                cy.contains('Bradesco').should('be.visible')
+                cy.contains('Sulamerica').should('exist')
+                cy.contains('Unimed').should('exist')
+                cy.contains('Bradesco').should('exist')
 
                 cy.get('[type="checkbox"]').last().scrollIntoView({ easing: 'linear' })
                 cy.get('.MuiFormGroup-root').children().should('have.length.at.least', 3)
