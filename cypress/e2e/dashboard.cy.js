@@ -51,14 +51,16 @@ describe('Usuário logado na página de dashboard', () => {
                     especialista.estado
                 )
 
-                // Toggle the "Atende por plano?" switch to reveal plan checkboxes
-                cy.get('[type="checkbox"]').first().check()
-                cy.contains('Sulamerica').should('exist')
-                cy.contains('Unimed').should('exist')
-                cy.contains('Bradesco').should('exist')
-
-                cy.get('[type="checkbox"]').last().scrollIntoView({ easing: 'linear' })
-                cy.get('.MuiFormGroup-root').children().should('have.length.at.least', 3)
+                // Toggle the switch and validate plan checkboxes inside the modal
+                cy.get('.MuiModal-root').first().within(() => {
+                    cy.get('input[aria-label="Atende por plano?"]').check({ force: true })
+                    cy.get('input[value="Sulamerica"]').should('exist')
+                    cy.get('input[value="Unimed"]').should('exist')
+                    cy.get('input[value="Bradesco"]').should('exist')
+                    cy.get('input[value="Sulamerica"]').check({ force: true })
+                    cy.get('input[value="Unimed"]').check({ force: true })
+                    cy.get('input[value="Bradesco"]').check({ force: true })
+                })
             })
         })
 
