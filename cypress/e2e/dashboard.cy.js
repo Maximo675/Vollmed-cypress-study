@@ -54,14 +54,15 @@ describe('Usuário logado na página de dashboard', () => {
                 // Toggle the switch and validate plan checkboxes inside the modal
                 cy.get('.MuiModal-root').first().then(($modal) => {
                     cy.writeFile('cypress/results/modal-dom.html', $modal[0].outerHTML)
-                })
-
-                cy.get('.MuiModal-root form').first().within(() => {
-                    cy.get('input[aria-label="Atende por plano?"]').click({ force: true })
-                    cy.get('.MuiFormGroup-root').should('exist')
-                    cy.get('input[value="Sulamerica"]').check({ force: true })
-                    cy.get('input[value="Unimed"]').check({ force: true })
-                    cy.get('input[value="Bradesco"]').check({ force: true })
+                    cy.wrap($modal).within(() => {
+                        cy.get('form').first().within(() => {
+                            cy.get('input[aria-label="Atende por plano?"]').click({ force: true })
+                            cy.get('.MuiFormGroup-root').should('exist')
+                            cy.get('input[value="Sulamerica"]').check({ force: true })
+                            cy.get('input[value="Unimed"]').check({ force: true })
+                            cy.get('input[value="Bradesco"]').check({ force: true })
+                        })
+                    })
                 })
             })
         })
