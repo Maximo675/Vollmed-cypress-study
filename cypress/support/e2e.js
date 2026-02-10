@@ -17,5 +17,9 @@
 import './commands'
 import 'cypress-plugin-api'
 
+beforeEach(() => {
+	cy.fixture('especialistas').as('especialistas')
+})
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
