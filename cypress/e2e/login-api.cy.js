@@ -16,13 +16,6 @@ describe('Testes em API', () => {
             cy.get('@token').should('exist');
         })
 
-        it('Deve verificar se o usuário está autenticado corretamente via POST na API', () => {
-            // Verificar se a autenticação está presente no localStorage
-            cy.get('@token').then(token => {
-                expect(token).to.exist;
-            });
-        });
-
     });
 
     context('Validações em respostas da API', () => {
