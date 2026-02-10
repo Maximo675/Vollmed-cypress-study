@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Debug spec content
+        run: |
+          git rev-parse HEAD
+          grep -R "@especialistas" -n cypress/e2e || true
+          sed -n '1,160p' cypress/e2e/dashboard.cy.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
