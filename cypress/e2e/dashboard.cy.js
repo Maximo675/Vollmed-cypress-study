@@ -1,7 +1,6 @@
 describe('Usuário logado na página de dashboard', () => {
     beforeEach(() => {
         cy.login(Cypress.env('email'), Cypress.env('senha'))
-        cy.fixture('especialistas').as('especialistas')
     })
 
     context('Redirecionamento na página de dashboard', () => {
@@ -36,8 +35,8 @@ describe('Usuário logado na página de dashboard', () => {
         })
 
         it('Seleciona o botão checkbox "Atende por plano?" após preenchimento do formulário para visualizar os planos de saúde', () => {
-            cy.get('@especialistas').then((dados) => {
-                const especialista = dados.especialistas[0];
+            cy.fixture('especialistas').then((dados) => {
+                const especialista = dados.especialistas[0]
                 cy.cadastraEspecialista(
                     especialista.nome,
                     especialista.email,
@@ -50,11 +49,15 @@ describe('Usuário logado na página de dashboard', () => {
                     especialista.numero,
                     especialista.complemento,
                     especialista.estado
-                );
+                )
 
-                cy.get('[type="checkbox"]').check()
+                // Toggle the "Atende por plano?" switch to reveal plan checkboxes
+                cy.get('[type="checkbox"]').first().check()
+                cy.contains('Sulamerica').should('be.visible')
+                cy.contains('Unimed').should('be.visible')
+                cy.contains('Bradesco').should('be.visible')
+
                 cy.get('[type="checkbox"]').last().scrollIntoView({ easing: 'linear' })
-
                 cy.get('.MuiFormGroup-root').children().each(($checkbox) => {
                     cy.wrap($checkbox).should('be.visible')
                 })
